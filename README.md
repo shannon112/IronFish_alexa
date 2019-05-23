@@ -26,6 +26,7 @@ In this package we provide a simple Alexa skill that parses a single slot (word/
 pip2 install flask
 pip2 install flask-ask
 pip2 install requests
+pip install 'cryptography<2.2'
 
 ## Maintainers
 
