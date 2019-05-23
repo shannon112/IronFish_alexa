@@ -140,8 +140,13 @@ Inside the skill builder, navigate to the *JSON Editor* and paste the contents o
 
 Run the skill server to test your skill.
 
+Trouble shootiing: may happen alexa cant recognize this new skill and intent
+https://forums.developer.amazon.com/questions/180497/alexa-skills-test-mode-not-recognition-invocation.html
+According to udugam: Interesting! I turned test mode off, and turned it back on without rebuilding and the invocation name now works!
+
 ## TODO
 
 * Sample code for ROS services
 
 This app was not created or endorsed by Amazon.
+
