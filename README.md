@@ -23,6 +23,9 @@ In this package we provide a simple Alexa skill that parses a single slot (word/
 * ROS Kinetic
 
 * Flask-ask (Python): follow installation from source [here.](https://github.com/johnwheeler/flask-ask/blob/master/README.rst#development)
+pip2 install flask
+pip2 install flask-ask
+
 
 ## Maintainers
 
