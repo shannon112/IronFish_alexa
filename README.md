@@ -23,10 +23,12 @@ In this package we provide a simple Alexa skill that parses a single slot (word/
 * ROS Kinetic
 
 * Flask-ask (Python): follow installation from source [here.](https://github.com/johnwheeler/flask-ask/blob/master/README.rst#development)
+```
 pip2 install flask
 pip2 install flask-ask
 pip2 install requests
-pip install 'cryptography<2.2'
+pip2 install 'cryptography<2.2'
+```
 
 ## Maintainers
 
@@ -140,9 +142,8 @@ Inside the skill builder, navigate to the *JSON Editor* and paste the contents o
 
 Run the skill server to test your skill.
 
-Trouble shootiing: may happen alexa cant recognize this new skill and intent
-https://forums.developer.amazon.com/questions/180497/alexa-skills-test-mode-not-recognition-invocation.html
-According to udugam: Interesting! I turned test mode off, and turned it back on without rebuilding and the invocation name now works!
+**Trouble shootiing:** [may happen alexa cant recognize this new skill and intent](https://forums.developer.amazon.com/questions/180497/alexa-skills-test-mode-not-recognition-invocation.html)  
+According to udugam: Interesting! I turned test mode off, and turned it back on without rebuilding and the invocation name now works!  
 
 ## TODO
 
