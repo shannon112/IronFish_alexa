@@ -25,7 +25,7 @@ def launch():
     '''
     Executed when launching skill: say "Alexa, ask tester"
     '''
-    welcome_sentence = 'Hello, this is a test skill. Please state a command.'
+    welcome_sentence = 'Hello, this is ironfish, your personal robot assistant.'
     return question(welcome_sentence)
 
 
@@ -38,7 +38,7 @@ def test_intent_function(name):
     must match the name of the intent in the Alexa skill.
     '''
     pub.publish(name)
-    return statement('I have published the following name to a ROS topic: {0}.'.format(name))
+    return statement('Ok, I am on the way to: {0}.'.format(name))
 
 
 @ask.session_ended
