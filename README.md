@@ -1,6 +1,8 @@
 # flask_ask_ros
 A locally hosted web service + ROS node for custom Alexa skills based on [Flask-Ask](https://github.com/johnwheeler/flask-ask).
 
+<img src=https://i.imgur.com/bgT711v.png/>
+
 ## Table of Contents
 
 * [Description](README.md#description)
