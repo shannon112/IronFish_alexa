@@ -25,21 +25,47 @@ def launch():
     '''
     Executed when launching skill: say "Alexa, ask tester"
     '''
-    welcome_sentence = 'Hello, this is ironfish, your personal robot assistant.'
+    welcome_sentence = 'Hello, this is ironfish, your personal robotics assistant.'
     return question(welcome_sentence)
 
 
-@ask.intent('TestIntent', default={'name': None})
-def test_intent_function(name):
+@ask.intent('NavigationIntent', default={'place':"", 'object':"", 'roomNumber':""})
+def test_intent_function(place, object, roomNumber):
     '''
     Executed when "TestIntent" is called:
     say "Alexa, ask tester to say (first name of a person)"
     Note that the 'intent_name' argument of the decorator @ask.intent
     must match the name of the intent in the Alexa skill.
     '''
-    pub.publish(name)
-    return statement('Ok, I am on the way to: {0}.'.format(name))
+    location = place +" "+ roomNumber +" "+ object
+    pub.publish(location)
+    if len(place)>0 and len(object)==0 and len(roomNumber)==0:
+        return statement('Ok, I am on the way to {}.'.format(place))
+    elif len(place)>0 and len(object)>0 and len(roomNumber)==0:
+        return statement('Ok, I am on the way to {} at {}.'.format(object,place))
+    elif len(place)>0 and len(object)==0 and len(roomNumber)>0:
+        return statement('Ok, I am on the way to {} {}.'.format(place,roomNumber))
+    elif len(place)>0 and len(object)>0 and len(roomNumber)>0:
+        return statement('Ok, I am on the way to {} at {} {}.'.format(object,place,roomNumber))
+    return statement('Ok, where I am ?')
 
+
+@ask.intent('AMAZON.StopIntent')
+def stop():
+    return statement("Goodbye")
+
+
+@ask.intent('AMAZON.CancelIntent')
+def cancel():
+    return statement("Goodbye")
+
+@ask.intent('AMAZON.NavigateHomeIntent')
+def home():
+    return statement("Goodbye")
+
+@ask.session_ended
+def session_ended():
+    return "{}", 200
 
 @ask.session_ended
 def session_ended():
@@ -57,4 +83,3 @@ if __name__ == '__main__':
         pkey_file = os.path.join(dirpath, '../config/ssl_keys/private-key.pem')
         app.run(host=os.environ['ROS_IP'], port=5000,
                 ssl_context=(cert_file, pkey_file))
-    
