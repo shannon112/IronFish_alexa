@@ -1,0 +1,73 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "iron fish",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "NavigationIntent",
+                    "slots": [
+                        {
+                            "name": "place",
+                            "type": "AMAZON.Room"
+                        },
+                        {
+                            "name": "object",
+                            "type": "AMAZON.Drink"
+                        },
+                        {
+                            "name": "roomNumber",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "going to {object} in {place}",
+                        "going to {object} in {place} {roomNumber}",
+                        "going to {place} {roomNumber}",
+                        "going to {place}",
+                        "let's go to find {object} in {place} ",
+                        "bring me to {object} at {place} {roomNumber}",
+                        "go to {place} {roomNumber}",
+                        "can you go to {place} {roomNumber} find {object}",
+                        "can you go to {place} find {object}",
+                        "can you go to {place} {roomNumber}",
+                        "can you go to {place}",
+                        "move to {place} {roomNumber}",
+                        "bring me to {place} {roomNumber}",
+                        "go {place} {roomNumber}",
+                        "let's go to {place} {roomNumber}",
+                        "let's go to find {object} in {place} {roomNumber}",
+                        "let's go to {place} {roomNumber} find {object}",
+                        "move to the {object} in the {place} {roomNumber}",
+                        "let's go to {place} find {object}",
+                        "let's go to find {object} at {place}",
+                        "bring me to {object} at {place}",
+                        "go to the side of {object} in {place}",
+                        "go to the {object} at {place}",
+                        "go to the {object} in {place}",
+                        "let's go to {place}",
+                        "bring me to {place}",
+                        "go {place}",
+                        "go to {place}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                }
+            ],
+            "types": []
+        }
+    }
+}

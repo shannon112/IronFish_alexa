@@ -1,0 +1,6 @@
+<launch>
+  <arg name='ngrok' default='false'/>
+  <param name='/ngrok' value='$(arg ngrok)'/>
+  <param name='infoMap_path' value="$(find ironfish_alexa)/infoMap/test.csv"/>
+  <node name='ironfish_alexa_skill_server' type='skill_server.py' pkg='ironfish_alexa' output='screen'/>
+</launch>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>flask_ask_ros</name>
+  <name>ironfish_alexa</name>
   <version>0.0.0</version>
   <description>An integration between an Alexa skill service with flask-ask and ROS</description>
 

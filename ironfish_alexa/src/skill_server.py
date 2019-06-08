@@ -2,6 +2,8 @@
 import os
 import rospy
 import threading
+import numpy as np
+import csv
 
 from flask import Flask
 from flask_ask import Ask, question, statement
@@ -19,6 +21,12 @@ threading.Thread(target=lambda: rospy.init_node('test_node', disable_signals=Tru
 pub = rospy.Publisher('test_pub', String, queue_size=1)
 NGROK = rospy.get_param('/ngrok', None)
 
+infoMap_path = rospy.get_param('infoMap_path',None)
+"""
+f = open(infoMap_path, 'r')
+infoMap_csv = csv.reader(f, delimiter=',')
+infoMap_list = list(infoMap_csv)[1:]
+"""
 
 @ask.launch
 def launch():
@@ -37,8 +45,20 @@ def test_intent_function(place, object, roomNumber):
     Note that the 'intent_name' argument of the decorator @ask.intent
     must match the name of the intent in the Alexa skill.
     '''
+    location = "default"
+    object_ = "default"
+
+    if len(place)>0 and len(roomNumber)>0: location = place + roomNumber
+    elif len(place)>0 and len(roomNumber)==0: location = place
+    else: location = location
+
+    if len(object)>0: object_ = object
+    else: object_ = object_
+
+    output = object_+","+location
+    pub.publish(output)
+
     location = place +" "+ roomNumber +" "+ object
-    pub.publish(location)
     if len(place)>0 and len(object)==0 and len(roomNumber)==0:
         return statement('Ok, I am on the way to {}.'.format(place))
     elif len(place)>0 and len(object)>0 and len(roomNumber)==0:
