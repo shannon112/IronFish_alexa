@@ -8,6 +8,7 @@ import csv
 from flask import Flask
 from flask_ask import Ask, question, statement
 from std_msgs.msg import String
+from ironfish_captain.srv import captain_command
 
 app = Flask(__name__)
 ask = Ask(app, "/")
@@ -37,6 +38,16 @@ def launch():
     return question(welcome_sentence)
 
 
+def send_command(object_,location):
+    try:
+        command = rospy.ServiceProxy('captain_service', captain_command)
+        resp = command(object_, location)
+        print "service responese:", resp
+        return resp
+    except rospy.ServiceException, e:
+        print "Service call failed: %s"%e
+
+
 @ask.intent('NavigationIntent', default={'place':"", 'object':"", 'roomNumber':""})
 def test_intent_function(place, object, roomNumber):
     '''
@@ -48,6 +59,9 @@ def test_intent_function(place, object, roomNumber):
     location = "default"
     object_ = "default"
 
+    print place
+    print object
+    print roomNumber
     if len(place)>0 and len(roomNumber)>0: location = place + roomNumber
     elif len(place)>0 and len(roomNumber)==0: location = place
     else: location = location
@@ -57,6 +71,7 @@ def test_intent_function(place, object, roomNumber):
 
     output = object_+","+location
     pub.publish(output)
+    send_command(object_,location)
 
     location = place +" "+ roomNumber +" "+ object
     if len(place)>0 and len(object)==0 and len(roomNumber)==0:
