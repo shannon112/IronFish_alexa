@@ -1,4 +1,4 @@
-# flask_ask_ros
+# ironfish_alexa
 A locally hosted web service + ROS node for custom Alexa skills based on [Flask-Ask](https://github.com/johnwheeler/flask-ask).
 
 <img src=https://i.imgur.com/bgT711v.png/>
@@ -100,7 +100,7 @@ We have tested two ways to accomplish this:
 5. Run the skill server with the ngrok argument set to `true`:
    
    ``` bash
-   roslaunch flask_ask_ros start_skill_server.launch ngrok:=true
+   roslaunch ironfish_alexa start_skill_server.launch ngrok:=1
    ```
 
 [ngrok_url]: https://github.com/3SpheresRoboticsProject/flask_ask_ros/raw/master/common/ngrok.png "ngrok terminal"
