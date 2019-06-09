@@ -25,18 +25,16 @@ bool add(ironfish_captain::captain_command::Request  &req,
     if(parsedCsv[i][1] == req.object && parsedCsv[i][2] == req.location){
       res.task_flag = true;
 
-
       //we'll send a goal to the robot to move 1 meter forward
       move_base_msgs::MoveBaseGoal goal;
       goal.target_pose.header.frame_id = "map";
       goal.target_pose.header.stamp = ros::Time::now();
-      goal.target_pose.pose.position.x = 1.0;
-      goal.target_pose.pose.position.y = 0.0;
-      goal.target_pose.pose.orientation.z=-0.707;
-      goal.target_pose.pose.orientation.w = -0.707;
-      ROS_INFO("Sending goal");
+      goal.target_pose.pose.position.x = ::atof(parsedCsv[i][3].c_str());
+      goal.target_pose.pose.position.y = ::atof(parsedCsv[i][4].c_str());
+      goal.target_pose.pose.orientation.z= ::atof(parsedCsv[i][5].c_str());
+      goal.target_pose.pose.orientation.w = ::atof(parsedCsv[i][6].c_str());
+      cout << "Sending goal (x,y,0),(0,0,z,w):" <<parsedCsv[i][3].c_str()<<","<<parsedCsv[i][4].c_str()<<","<<parsedCsv[i][5].c_str()<<","<<parsedCsv[i][6].c_str();
       ac_pointer->sendGoal(goal);
-
       /*
       ac_pointer->waitForResult();
       if(ac_pointer->getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
