@@ -19,15 +19,9 @@ ask = Ask(app, "/")
 # in the main thread.
 
 threading.Thread(target=lambda: rospy.init_node('test_node', disable_signals=True)).start()
-pub = rospy.Publisher('test_pub', String, queue_size=1)
+pub = rospy.Publisher('naviIntent', String, queue_size=1)
 NGROK = rospy.get_param('/ngrok', None)
 
-infoMap_path = rospy.get_param('infoMap_path',None)
-"""
-f = open(infoMap_path, 'r')
-infoMap_csv = csv.reader(f, delimiter=',')
-infoMap_list = list(infoMap_csv)[1:]
-"""
 
 @ask.launch
 def launch():
@@ -42,14 +36,13 @@ def send_command(object_,location):
     try:
         command = rospy.ServiceProxy('captain_service', captain_command)
         resp = command(object_, location)
-        print "service responese:", resp
-        return resp
+        return resp.task_flag
     except rospy.ServiceException, e:
         print "Service call failed: %s"%e
 
 
 @ask.intent('NavigationIntent', default={'place':"", 'object':"", 'roomNumber':""})
-def test_intent_function(place, object, roomNumber):
+def navi_intent_function(place, object, roomNumber):
     '''
     Executed when "TestIntent" is called:
     say "Alexa, ask tester to say (first name of a person)"
@@ -57,33 +50,29 @@ def test_intent_function(place, object, roomNumber):
     must match the name of the intent in the Alexa skill.
     '''
     location = "default"
-    object_ = "default"
+    object_ = "center"
 
-    print place
-    print object
-    print roomNumber
+    # prasing location
     if len(place)>0 and len(roomNumber)>0: location = place + roomNumber
     elif len(place)>0 and len(roomNumber)==0: location = place
     else: location = location
 
+    # prasing object
     if len(object)>0: object_ = object
     else: object_ = object_
 
-    output = object_+","+location
+    # call service to navi and  pubish topic as tracing use
+    output = "obj: {};  loc: {};  num: {}".format(object_,location,roomNumber)
     pub.publish(output)
-    send_command(object_,location)
+    captain_resp = send_command(object_,location)
+    print "service responese:", captain_resp
 
-    location = place +" "+ roomNumber +" "+ object
-    if len(place)>0 and len(object)==0 and len(roomNumber)==0:
-        return statement('Ok, I am on the way to {}.'.format(place))
-    elif len(place)>0 and len(object)>0 and len(roomNumber)==0:
-        return statement('Ok, I am on the way to {} at {}.'.format(object,place))
-    elif len(place)>0 and len(object)==0 and len(roomNumber)>0:
-        return statement('Ok, I am on the way to {} {}.'.format(place,roomNumber))
-    elif len(place)>0 and len(object)>0 and len(roomNumber)>0:
-        return statement('Ok, I am on the way to {} at {} {}.'.format(object,place,roomNumber))
-    return statement('Ok, where I am ?')
-
+    if bool(captain_resp):
+        if object_ == "center": return statement('Ok, I am on the way to the {} of {}.'.format(object_,location))
+        else: return statement('Ok, I am on the way to the {} in {}.'.format(object_,location))
+    else:
+        if object_ == "center": return statement('Sorry, the place {} is not registed on the map.'.format(location))
+        else: return statement('Sorry, the {} in {} is not registed on the map.'.format(object_,location))
 
 @ask.intent('AMAZON.StopIntent')
 def stop():

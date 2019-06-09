@@ -4,6 +4,6 @@ goal_index,object,place,x,y,z,w
 3,monitor,room304,x3,y3,z3,w3
 4,bag,room302,x4,y4,z4,w4
 5,chair,room304,x5,y5,z5,w5
-6,default,room304,x5,y5,z5,w5
-7,default,room302,x6,y6,z6,w6
-8,default,corridor,x7,y7,z7,w7
+6,center,room304,x5,y5,z5,w5
+7,center,room302,x6,y6,z6,w6
+8,center,corridor,x7,y7,z7,w7
