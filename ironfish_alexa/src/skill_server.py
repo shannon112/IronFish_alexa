@@ -41,6 +41,11 @@ def send_command(object_,location):
         print "Service call failed: %s"%e
 
 
+@ask.intent('MadeFromIntent')
+def made_intent_function():
+    return statement("Hi, I am iron fish. From National Taiwan University, Department of Electrical Engineering, a.k.a. N.T.U.E.E.")
+
+
 @ask.intent('NavigationIntent', default={'place':"", 'object':"", 'roomNumber':""})
 def navi_intent_function(place, object, roomNumber):
     '''
