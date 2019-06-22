@@ -1,4 +1,4 @@
 <launch>
-  <param name='infoMap_path' value="$(find ironfish_captain)/infoMap/sim_test.csv"/>
+  <param name='infoMap_path' value="$(find ironfish_captain)/infoMap/ver2.txt"/>
   <node name='ironfish_captain_server' type='captain_server' pkg='ironfish_captain' output='screen'/>
 </launch>

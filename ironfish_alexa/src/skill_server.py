@@ -63,9 +63,20 @@ def navi_intent_function(place, object, roomNumber):
     else: location = location
 
     # prasing object
-    if len(object)>0: object_ = object
+    if len(object)>0:
+        object_list = object.split(' ')
+        if len(object_list)>1:
+            temp = ""
+            for i,item in enumerate(range(len(object_list)-1)):
+                if len(object_list[i])>len(object_list[i+1]): temp=object_list[i]
+                elif object_list[i] == "the": temp=object_list[i+1]
+                elif object_list[i+1] == "the": temp=object_list[i]
+                else: temp=object_list[i+1]
+            object_ = temp
+        else:
+            object_ = object
     else: object_ = object_
-
+    print(object_)
     # call service to navi and  pubish topic as tracing use
     output = "obj: {};  loc: {};  num: {}".format(object_,location,roomNumber)
     pub.publish(output)
