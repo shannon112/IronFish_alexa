@@ -3,6 +3,10 @@ A locally hosted web service + ROS node for custom Alexa skills based on [Flask-
 
 <img src=https://i.imgur.com/bgT711v.png/>
 
+- Demo video: https://www.youtube.com/watch?v=z5st7_cYKAM
+- Demo ppt: https://www.slideshare.net/secret/LvU9t7quVBJgQY
+- Report: 
+
 ## Table of Contents
 
 * [Description](README.md#description)
