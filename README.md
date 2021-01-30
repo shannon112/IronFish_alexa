@@ -3,7 +3,9 @@ A locally hosted web service + ROS node for custom Alexa skills based on [Flask-
 
 <img src=https://i.imgur.com/bgT711v.png/>
 
-- Demo video: https://www.youtube.com/watch?v=z5st7_cYKAM
+- A feature in "Informative Map-based Mobile Robot Autonomous Navigation with Nature Language Command" project
+- Demo video(real): https://www.youtube.com/watch?v=z5st7_cYKAM
+- Demo video(sim): https://www.youtube.com/watch?v=W4sxHN94shU
 - Demo ppt: https://www.slideshare.net/secret/LvU9t7quVBJgQY
 - Report: https://github.com/shannon112/IronFish_alexa/blob/master/ASRC-final-report.pdf
 
