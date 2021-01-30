@@ -5,7 +5,7 @@ A locally hosted web service + ROS node for custom Alexa skills based on [Flask-
 
 - Demo video: https://www.youtube.com/watch?v=z5st7_cYKAM
 - Demo ppt: https://www.slideshare.net/secret/LvU9t7quVBJgQY
-- Report: 
+- Report: https://github.com/shannon112/IronFish_alexa/blob/master/ASRC-final-report.pdf
 
 ## Table of Contents
 
